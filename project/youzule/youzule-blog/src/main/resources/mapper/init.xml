@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.youzule.blog.module.dao.InitDao">
+
+    <!--根据code返回菜单名称-->
+    <select id="getMenuByCode" parameterType="java.lang.Integer" resultType="cn.youzule.blog.module.entity.Menu">
+    SELECT * FROM menu WHERE code = #{code}
+    </select>
+
+    <!--返回所有菜单-->
+    <select id="getMenus" resultType="cn.youzule.blog.module.dto.res.GetMenusDto">
+        SELECT code,name FROM menu;
+    </select>
+
+    <!--返回所有标签-->
+    <select id="getTags" resultType="cn.youzule.blog.module.dto.res.GetTagsDto">
+        SELECT code,name FROM tag;
+    </select>
+
+    <!--查询文档列表-->
+    <select id="getDocs" parameterType="java.util.List" resultType="cn.youzule.blog.module.dto.res.GetDocsDtoRes">
+        SELECT code,title FROM document WHERE 1=1
+        <if test="list != null">
+            <foreach collection="list" item="item" index="index" open="" close="" separator=" ">
+                AND content LIKE concat("%&gt;%",#{item},"%&lt;%")
+            </foreach>
+        </if>
+        ORDER BY create_time DESC
+    </select>
+
+    <!--根据code获取doc-->
+    <select id="getDocByCode" parameterType="java.lang.Integer" resultType="cn.youzule.blog.module.entity.Document">
+        SELECT * FROM document WHERE code = #{code}
+    </select>
+
+    <!--跟据menuCode获取doc-->
+    <select id="getDocsByMenuCode" parameterType="java.lang.Integer"
+            resultType="cn.youzule.blog.module.entity.Document">
+        SELECT * FROM document WHERE menu_code = #{menuCode}
+    </select>
+
+    <!--根据tagCode获取doc-->
+    <select id="getDocsByTagCode" parameterType="java.lang.Integer" resultType="cn.youzule.blog.module.dto.res.GetDocsDtoRes">
+        SELECT code,title FROM document WHERE tag_code LIKE concat("%",#{tagCode},"%")
+        ORDER BY create_time DESC
+    </select>
+
+    <!--根据tagCode获取tag-->
+    <select id="getTagByTagCode" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT code, name FROM tag WHERE code = #{code}
+    </select>
+
+    <!--根据munuCode获取tags-->
+    <select id="getTagsByMenuCode" parameterType="java.lang.Integer" resultType="cn.youzule.blog.module.dto.res.GetTagsDto">
+        SELECT code,name FROM tag WHERE menu_code = #{menuCode}
+    </select>
+
+    <!--根据doc_code获取comment-->
+    <select id="getCommentByDocCode" parameterType="java.lang.Integer" resultType="cn.youzule.blog.module.entity.Comment">
+        SELECT * FROM comment WHERE document_code = #{docCode}
+    </select>
+
+    <!--提交评论-->
+    <insert id="insertComment" parameterType="cn.youzule.blog.module.dto.req.CommentDtoReq">
+        INSERT INTO comment (id,document_code,name,email,ip,content,create_time)
+        VALUE (uuid32(),#{docCode},#{name},#{email},#{ip},#{content},now())
+    </insert>
+
+</mapper>

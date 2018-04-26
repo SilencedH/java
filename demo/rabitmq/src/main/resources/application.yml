@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: rabbit-mq
+  rabbitmq:
+    host: 47.52.239.55
+    port: 5672
+    username: guest
+    password: nihao123
+    

@@ -1,0 +1,8 @@
+2018-4-9 21:38:01 main INFO Starting BlogApplication on 13673373347 with PID 18244 (C:\Users\13673\Documents\workspace\idea\project\youzule\youzule\youzule\youzule-blog\target\classes started by 13673 in C:\Users\13673\Documents\workspace\idea\project\youzule\youzule\youzule)
+2018-4-9 21:38:01 main DEBUG Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+2018-4-9 21:38:01 main INFO The following profiles are active: dev
+2018-4-9 21:38:12 main INFO Started BlogApplication in 12.359 seconds (JVM running for 13.936)
+2018-4-9 21:39:15 http-nio-8081-exec-7 INFO 调用dao开始，入参:1
+2018-4-9 21:39:15 http-nio-8081-exec-7 DEBUG ==>  Preparing: SELECT * FROM menu WHERE code = ? 
+2018-4-9 21:39:15 http-nio-8081-exec-7 DEBUG ==> Parameters: 1(Integer)
+2018-4-9 21:39:15 http-nio-8081-exec-7 DEBUG <==      Total: 0
