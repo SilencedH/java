@@ -22,7 +22,7 @@ public class HelloController {
 
     @GetMapping("/hi")
     public String hello(@RequestParam String name){
-        System.out.println(name);
+        System.out.println("ribbon server");
         return helloService.hello(name);
     }
 }
