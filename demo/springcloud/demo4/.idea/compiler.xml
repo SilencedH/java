@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demo4" />
+        <module name="server-hi" />
+        <module name="server-miya" />
+        <module name="server-zipkin" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo4" target="1.5" />
+      <module name="server-hi" target="1.8" />
+      <module name="server-miya" target="1.8" />
+      <module name="server-zipkin" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
