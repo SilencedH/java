@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.youzule.youzule.module.blog.dao.IndexDao">
+    <select id="test" resultType="String">
+    SELECT id FROM menu limit 1;
+</select>
+
+    <!--获取所有菜单-->
+    <select id="getMenus" resultType="net.youzule.youzule.module.blog.dto.res.MenusRes">
+      SELECT
+        code,name
+      FROM
+        menu
+    </select>
+    <!--根据menuCode获取subMenu-->
+    <select id="getSubMenuByMenuCode" parameterType="java.lang.Integer"
+            resultType="net.youzule.youzule.module.blog.dto.res.SubMenuRes">
+        SELECT
+          code,name,menu_code
+          FROM sub_menu
+          WHERE menu_code = #{menuCode}
+    </select>
+    <!--根据subMenuCode查询subject主要信息-->
+    <select id="getSubjectBySubMenuCode" parameterType="java.lang.Integer"
+            resultType="net.youzule.youzule.module.blog.dto.res.SubjectRes">
+        SELECT
+          code,name,document_count
+          FROM subject
+          WHERE
+          sub_menu_code = #{subMenuCode}
+    </select>
+    <!--根据subMenuCode查询subMenu主要信息-->
+    <select id="getSubMenuByCode" parameterType="java.lang.Integer"
+            resultType="net.youzule.youzule.module.blog.dto.res.SubMenuRes">
+        SELECT
+          code,name,menu_code
+          FROM sub_menu
+          WHERE code = #{code}
+    </select>
+
+    <!--获取所有主题主要信息-->
+    <select id="getSubjects" resultType="net.youzule.youzule.module.blog.dto.res.SubjectsRes">
+        SELECT
+        code,name,document_count,sub_menu_code
+        FROM subject
+        ORDER BY create_time DESC
+    </select>
+
+    <!--根据主题编号获取文档列表-->
+    <select id="getSubjectDocuments" parameterType="java.lang.Integer"
+            resultType="net.youzule.youzule.module.blog.dto.res.DocumentsRes">
+        SELECT
+        d.code code,d.title title,d.author author,d.type type,d.create_time create_time,SUBSTRING(d.content,1,120) content_desc,d.views,s.name subject_name
+        FROM document d , subject s
+        WHERE
+        d.subject_code = s.code
+        AND
+        subject_code = #{subjectCode}
+        ORDER BY create_time DESC
+    </select>
+
+    <!--根据关键字查询文档列表-->
+    <select id="getKeyWordsDocuments" parameterType="java.util.List"
+            resultType="net.youzule.youzule.module.blog.dto.res.DocumentsRes">
+        SELECT
+        d.code code,d.title title,d.author author,d.type type,d.create_time create_time,SUBSTRING(d.content,1,120)
+        content_desc,d.views,s.name subject_name
+        FROM document d , subject s
+        WHERE
+        d.subject_code = s.code
+        <foreach collection="list" item="item" index="index" separator="" open="" close="">
+            AND content LIKE concat("%",#{item},"%")
+        </foreach>
+        ORDER BY create_time DESC
+    </select>
+    <!--根据code获取文档信息-->
+    <select id="getDocumentByCode" parameterType="java.lang.Integer"
+            resultType="net.youzule.youzule.module.blog.dto.res.DocumentRes">
+        SELECT
+        d.code code,d.title title,d.author author,d.type type,d.create_time create_time,content_html,d.views,s.name subject_name
+        FROM document d , subject s
+        WHERE
+        d.subject_code = s.code
+        AND
+        d.code = #{code}
+    </select>
+
+    <!--根据documentCode获取评论信息-->
+    <select id="getDocumentComments" parameterType="java.lang.Integer" resultType="net.youzule.youzule.module.blog.dto.res.CommentRes">
+        SELECT code,name,content,create_time
+        FROM comment
+        WHERE document_code = #{documentCode}
+        ORDER BY create_time DESC
+    </select>
+
+    <!--提交评论-->
+    <insert id="insertComment"  parameterType="net.youzule.youzule.module.blog.dto.req.CommentReq">
+        INSERT INTO
+        comment
+        (document_code,name,email,ip,create_time,content)
+        VALUES
+        (#{documentCode},#{name},#{email},#{ip},#{createTime},#{content})
+    </insert>
+
+    <select id="getDocuments" resultType="net.youzule.youzule.module.blog.dto.res.DocumentsRes">
+        SELECT
+        d.code code,d.title title,d.author author,d.type type,d.create_time create_time,SUBSTRING(d.content,1,120) content_desc,d.views,s.name subject_name
+        FROM document d , subject s
+        WHERE
+        d.subject_code = s.code
+        ORDER BY create_time DESC
+    </select>
+
+    <!--更新document浏览次数views-->
+    <update id="updateDocumentViews">
+        UPDATE document SET views = (views + 1) WHERE code = #{code}
+    </update>
+
+
+    <!--==============================废弃==================-->
+    <!--获取所有关键字-->
+    <select id="getKeyWords" resultType="net.youzule.youzule.module.blog.dto.res.KeyWordsRes">
+      SELECT
+        code,name
+        FROM key_word
+    </select>
+
+</mapper>

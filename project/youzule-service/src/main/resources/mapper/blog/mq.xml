@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.youzule.youzule.module.blog.dao.MqDao">
+
+    <!--使用ognl表达式特点，调用静态方法处理Body-->
+    <insert id="insertMqMessage" parameterType="net.youzule.youzule.common.other.MessageEntity">
+        INSERT INTO mq_message (id,queue_name,body,time)
+        VALUES (#{id},#{queueName},'${@com.alibaba.fastjson.JSON@toJSONString(data)}',#{time})
+    </insert>
+
+    <!--插入请求信息-->
+    <insert id="insertRequest" parameterType="net.youzule.youzule.module.blog.entity.Request">
+        INSERT INTO request (id,servlet_path,request_time,ip,country,area,region,city
+        ,county,isp,country_id,area_id,region_id,city_id,county_id,isp_id,response_time
+        ,elapsed_time )
+        VALUES (
+        #{id},#{servletPath},#{requestTime},#{ip},#{country},
+        #{area},#{region},#{city},#{county},#{isp},#{countryId},
+        #{areaId},#{regionId},#{cityId},#{countyId},#{ispId},
+        #{responseTime},#{elapsedTime}
+        )
+    </insert>
+
+    <!--根据id查询request-->
+    <select id="selectRequestById" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM request WHERE id = #{id}
+    </select>
+
+    <update id="updateRequest" parameterType="java.util.Map">
+        UPDATE request SET
+        response_time = #{responseTime},
+        elapsed_time = #{elapsedTime}
+        WHERE id = #{id}
+    </update>
+</mapper>

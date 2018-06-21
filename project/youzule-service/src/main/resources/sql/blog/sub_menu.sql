@@ -1,0 +1,17 @@
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (1, 'Java基础', 1, '2018-05-24 17:58:38', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (2, 'spring', 1, '2018-05-24 17:59:21', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (3, 'mybatis', 1, '2018-05-24 17:59:21', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (4, 'maven', 1, '2018-05-24 17:59:21', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (5, '基础知识', 2, '2018-05-24 18:46:01', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (6, '事务', 2, '2018-05-24 18:46:01', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (7, '引擎', 2, '2018-05-24 18:46:01', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (8, '基础命令', 3, '2018-05-24 18:47:15', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (9, '环境搭建', 3, '2018-05-24 18:47:15', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (10, '深度学习', 3, '2018-05-24 18:47:15', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (11, 'ES', 4, '2018-05-24 18:47:38', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (12, 'vue', 4, '2018-05-24 18:47:38', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (13, 'webpack', 4, '2018-05-24 18:47:38', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (14, '计算机网络', 5, '2018-05-24 18:48:15', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (15, '数据结构', 5, '2018-05-24 18:48:15', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (16, '设计模式', 5, '2018-05-24 18:48:15', 'Sean');
+INSERT INTO `sub_menu`(`code`, `name`, `menu_code`, `create_time`, `create_user`) VALUES (17, 'JavaFX', 1, '2018-05-30 13:05:46', 'Sean');
